@@ -42,7 +42,7 @@ class AllBooks extends Component {
           <div>author:{book.author} </div>
           <div>genre:{book.genre} </div>
           <div>description:{book.description} </div>
-          <Link to={`/music/${book.id}`}>learn more</Link>
+          <Link to={`/book/${book.id}`}>learn more</Link>
           <div><button onClick={() => this.deleteSong(book.id)}>delete</button></div>
           </div>
       })
@@ -50,7 +50,7 @@ class AllBooks extends Component {
     return (
       <div className="App">
        {this.props.match.params.id}
-      AllBooks
+        <div><Link to={`/AddBook`}></Link></div>
         <div>{books}</div>
       </div>
     );
