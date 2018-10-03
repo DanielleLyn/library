@@ -22,7 +22,7 @@ class AddBook extends Component {
     // }
    
     render(){
-        const {dispatch} = this.props;
+        // const {dispatch} = this.props;
     return(
 
         <div className='addBook'>

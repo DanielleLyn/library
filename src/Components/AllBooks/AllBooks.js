@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link } from 'react-router-dom';
-// import {setAllMusic} from '../../ducks/reducer';
+import {setAllBooks} from '../../ducks/reducer';
 
 
 class AllBooks extends Component {
@@ -35,6 +35,7 @@ class AllBooks extends Component {
     }    
         render() {
             console.log('new state', this.state);
+            console.log('this.props.AllBooks', this.props.AllBooks)
       const books = this.state.AllBooks.map((book,index) =>{
           return <div key={book.id}>
           <div><img src={book.image} /></div>
@@ -46,25 +47,25 @@ class AllBooks extends Component {
           <div><button onClick={() => this.deleteSong(book.id)}>delete</button></div>
           </div>
       })
-      console.log('---', books)
+      
     return (
       <div className="App">
-       {this.props.match.params.id}
-        <div><Link to={`/AddBook`}></Link></div>
+       {/* {this.props.match.params.id} */}
+        <div><Link to={`/AddBook`}>Add Book</Link></div>
         <div>{books}</div>
       </div>
     );
   }
 }
 
-// const mapStateToProps = (state) => {
-//     return state;
-// }
+const mapStateToProps = (state) => {
+    return state;
+}
 
-// const mapDispatchToProps = {
+const mapDispatchToProps = {
 
-//     setAllMusic
+    setAllBooks
 
-// }
+}
 
-export default AllBooks
+export default connect (mapStateToProps, mapDispatchToProps)(AllBooks)
