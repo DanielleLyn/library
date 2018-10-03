@@ -1,4 +1,4 @@
-// const massive = require('massive');
+const massive = require('massive');
 const express = require('express');
 const bodyParser = require('body-parser');
 const controller = require('./controller')
@@ -11,15 +11,15 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../public/build')); //Serves up static express files for frontend
 
 // app.delete( '/api/music/:id', controller.delete );
-// app.get( '/api/music', controller.read );
+app.get( '/api/books', controller.read );
 // app.get('/api/music/:id', controller.getSong);
 
-// massive(process.env.CONNECTION_STRING).then(dbInstance => {
-//     console.log('connected')
-//     app.set('db', dbInstance);
-// }).catch(error=>{
-//     console.log('----error', error);
-// });
+massive(process.env.CONNECTION_STRING).then(dbInstance => {
+    console.log('connected')
+    app.set('db', dbInstance);
+}).catch(error=>{
+    console.log('----error', error);
+});
 
 
 app.listen(4000, ()=>{
