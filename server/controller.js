@@ -5,6 +5,18 @@ module.exports = {
             res.status(200).json(response);
         })
     },
+    post: (req,res) => {
+        const {image, title, author, genre, description} =req.body;
+        const newBook ={image, title, author, genre, description}; 
+
+        const db = req.app.get('db');
+
+        db.create_book(newBook)
+        .then(book => {
+            res.status(200).json({message: 'book created!'})
+        }).catch(err => console.log('create book error', err))
+    }
+
     // delete: ( req, res, next ) => {
     //     const db = req.app.get('db');
     //     const { id } = req.params; 

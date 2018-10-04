@@ -45,7 +45,7 @@ class AllBooks extends Component {
           <div>genre:{book.genre} </div>
           <div>description:{book.description} </div>
           <Link to={`/book/${book.id}`}>learn more</Link>
-          <div><button onClick={() => this.deleteSong(book.id)}>delete</button></div>
+          <div><button onClick={() => this.deleteBook(book.id)}>delete</button></div>
           </div>
       })
       
@@ -59,14 +59,14 @@ class AllBooks extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//     return{
-//         state
-//     }
-// }
+const mapStateToProps = (state) => {
+    return{
+        state
+    }
+}
 
-// const mapDispatchToProps = {
-//     setBooks,
-// }
+const mapDispatchToProps = {
+    setBooks,
+}
 
-export default connect (null, { setBooks })(AllBooks)
+export default connect (mapStateToProps, mapDispatchToProps)(AllBooks)

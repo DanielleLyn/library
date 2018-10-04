@@ -14,6 +14,8 @@ app.use(express.static(__dirname + '/../public/build')); //Serves up static expr
 app.get( '/api/books', controller.read );
 // app.get('/api/music/:id', controller.getSong);
 
+app.post( '/api/books', controller.post)
+
 massive(process.env.CONNECTION_STRING).then(dbInstance => {
     console.log('connected')
     app.set('db', dbInstance);
