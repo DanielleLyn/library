@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {Link } from 'react-router-dom';
-import {setAllBooks} from '../../ducks/reducer';
+import {setBooks} from '../../ducks/reducer';
 
 
 class AllBooks extends Component {
     constructor(){
         super();
         this.state={
-           AllBooks:[],
+           books:[],
         }
         this.deleteBook = this.deleteBook.bind(this);
     }
@@ -17,8 +17,9 @@ class AllBooks extends Component {
         axios.get('/api/books')
         .then(res => {
             console.log('response', res.data)
+            this.props.setBooks(res.data)
             this.setState({
-                AllBooks: res.data
+                books: res.data
             })
         })
         .catch(error => {
@@ -35,8 +36,8 @@ class AllBooks extends Component {
     }    
         render() {
             console.log('new state', this.state);
-            console.log('this.props.AllBooks', this.props.AllBooks)
-      const books = this.state.AllBooks.map((book,index) =>{
+            console.log('this.props.books', this.props.books)
+      const books = this.state.books.map((book,index) =>{
           return <div key={book.id}>
           <div><img src={book.image} /></div>
           <div>title: {book.title}</div>
@@ -58,14 +59,14 @@ class AllBooks extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-    return state;
-}
+// const mapStateToProps = (state) => {
+//     return{
+//         state
+//     }
+// }
 
-const mapDispatchToProps = {
+// const mapDispatchToProps = {
+//     setBooks,
+// }
 
-    setAllBooks
-
-}
-
-export default connect (mapStateToProps, mapDispatchToProps)(AllBooks)
+export default connect (null, { setBooks })(AllBooks)
