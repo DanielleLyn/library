@@ -13,8 +13,16 @@ module.exports = {
 
         db.create_book(newBook)
         .then(book => {
+             if (req.session.history) {
+      req.session.history.push(book);
+    } else {
+      req.session.history = [];
+      req.session.history.push(book);
+    }
+
             res.status(200).json({message: 'book created!'})
         }).catch(err => console.log('create book error', err))
+        
     }
 
     // delete: ( req, res, next ) => {
