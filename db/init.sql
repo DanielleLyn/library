@@ -1,4 +1,12 @@
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books;
+
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    auth0_id VARCHAR,
+    username VARCHAR unique not null,
+    email VARCHAR unique not null
+);
 
 CREATE TABLE books(
     id SERIAL PRIMARY KEY,
@@ -8,6 +16,18 @@ CREATE TABLE books(
     genre TEXT,
     description TEXT
 );
+
+INSERT INTO users(auth0_id, username, email)
+VALUES(25, 'Terry', 'terry@email.com');
+
+INSERT INTO users(auth0_id, username,  email)
+VALUES (30, 'Sam', 'sam@email.com' );
+
+INSERT INTO users(auth0_id, username, email)
+VALUES (21, 'Jenny', 'Jenny@email.com');
+
+INSERT INTO users(auth0_id, username, email)
+VALUES(50, 'Sally',  'Sally@email.com');
 
 
 INSERT INTO books (image, title, author, genre, description)
