@@ -13,7 +13,8 @@ const routes = (
         <Route exact path = '/' component = {App} />
         <Route path = '/AllBooks' component = {AllBooks} />
         <Route path='/AddBook' component={AddBook} />
-        <Route pUserBooksath='/userBooks' component={UserBooks} />
+        <Route path='/userBooks' component={UserBooks} />
+      
 
       
     </Switch>
