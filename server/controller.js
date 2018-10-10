@@ -22,7 +22,18 @@ module.exports = {
             res.status(200).json({message: 'book created!'})
         }).catch(err => console.log('create book error', err))
         
-    }
+    },
+    userListing:(req,res) => {
+        console.log('userListing hit')
+        
+        const db = req.app.get('db');
+        db.books_user_join(req.params.id).then(listing => {
+            console.log('listing', listing)
+            res.status(200).json({listing});
+            
+        })
+
+    },
 
     // delete: ( req, res, next ) => {
     //     const db = req.app.get('db');

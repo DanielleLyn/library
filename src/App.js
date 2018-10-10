@@ -22,8 +22,9 @@ class App extends Component {
       <div className="App">
    
         <div className='All_Books'>
-        <button onClick={this.login}>Login</button>
+        <button><Link to='/login'>Log In</Link></button>
          {routes}
+         
         </div>
       </div>
     );

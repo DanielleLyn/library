@@ -66,7 +66,7 @@ app.get('/auth/callback', (req, res) => {
             const user = users[0];
             req.session.user = user;
             req.session.history = ['hello'];
-            res.redirect('/');
+            res.redirect('/login');
           } else {
             const createUserData = {
               auth0_id: auth0id,
@@ -79,7 +79,7 @@ app.get('/auth/callback', (req, res) => {
               let user = newUsers[0];
               req.session.user = user;
               req.session.history = [];
-              res.redirect('/');
+              res.redirect('/login');
             })
           }
         })   
@@ -95,10 +95,17 @@ app.get('/auth/callback', (req, res) => {
       });      
   })
 
+  app.get('/api/userdata', (req,res) => {
+    if (req.session.user) {
+      res.send(req.session.user)
+    }
+  })
 
   app.get('/api/user-data', (req, res) => {
     res.json({ user: req.session.user });
   });
+
+  app.get('/api/userListing/:id', controller.userListing)
 
 app.listen(4000, ()=>{
     console.log('server is listening on port 4000'  );
